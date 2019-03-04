@@ -1,0 +1,23 @@
+
+.game-container{
+    text-align: center;
+}
+.deck .col-md-2 {
+    text-align: center;
+    font-size: 16px;
+   
+  }
+
+  .deck-fa{
+    font-size: 7em;
+    list-style-type: none;
+    margin: 25px;
+  }
+
+  li{
+    border-radius: 15px;
+    background-color: black;
+    color: whitesmoke;
+    text-align: center;
+  }
+
