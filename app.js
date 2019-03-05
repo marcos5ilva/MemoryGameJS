@@ -1,5 +1,10 @@
  //Card deck array
  let memoryDeck = [];
+
+ let revealedCards = [];
+
+ let clickCounter =0;
+
  //Card's symbols
  memoryDeck[0]= '<i class="fab fa-js"></i>'; //JavaScript logo
  memoryDeck[1]= '<i class="fab fa-js"></i>'; //JavaScript logo
@@ -30,12 +35,12 @@
     if(random> memoryDeck.length){
         random = Math.floor(Math.random() * (memoryDeck.length)); 
     }
-    
+
     let card = memoryDeck[random];
     console.log("card :"+random);
     //removing the card from the deck
     
-    if(memoryDeck.length > 3){
+    if(memoryDeck.length > 1){
     memoryDeck.splice(random, 1);
     console.log("memoryDeck size "+memoryDeck.length);
     console.log("memoDeck :"+memoryDeck);
@@ -45,9 +50,25 @@
 };
 
 let clickCard = function(){
-    
-    
-    document.getElementById("card1").innerHTML= drawCard();
+        
+        clickCounter++;
+
+        let card = drawCard();
+        revealedCards.push(card);
+        document.getElementById("card1").innerHTML= card;
+        console.log("revealedCards " +revealedCards);
+    if(clickCounter==2){
+        clickCounter =0;
+        if(revealedCards[0] == revealedCards[1]){
+            console.log("match");
+            revealedCards.length =0;
+        }else{
+           
+            console.log("doesnt match");
+            revealedCards.length =0;
+        }
+    }
+
 };
 
 playGame = function(){
