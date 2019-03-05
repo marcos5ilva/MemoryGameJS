@@ -4,12 +4,12 @@
 }
 .deck .col-md-2 {
     text-align: center;
-    font-size: 16px;
+    /*font-size: 2.5em;*/
    
   }
 
   .deck-fa{
-    font-size: 7em;
+    font-size: 3.7em;
     list-style-type: none;
     margin: 25px;
   }
