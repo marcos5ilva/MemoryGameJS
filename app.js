@@ -1,6 +1,7 @@
  //Card deck array
  let memoryDeck = [];
 
+ let hiddenCards = [];
  let revealedCards = [];
 
  let clickCounter =0;
@@ -28,6 +29,22 @@
  memoryDeck[19]= '<i class="fab fa-stack-overflow"></i>'; //Stack overflow logo
 
  
+ let shuffleHiddenCards = function(deck){
+     console.log("shuffleCars working");
+     console.log(deck);
+    let random = 0; 
+    let shuffleCards = [];
+
+    for (let i= deck.length; i>=0; i--){
+        random = Math.floor(Math.random() * (i));
+        console.log("i"+ i);
+        shuffleCards[i] = deck[random];
+        deck.splice(random, 1);
+    }
+    
+    return shuffleCards;
+ };
+
  let drawCard = function(){
      console.log("drawCard called");
     let random = Math.floor(Math.random() * (memoryDeck.length)); 
@@ -49,13 +66,13 @@
     }
 };
 
-let clickCard = function(){
+let clickCard = function(id){
         
         clickCounter++;
 
         let card = drawCard();
         revealedCards.push(card);
-        document.getElementById("card1").innerHTML= card;
+        document.getElementById(id).innerHTML= card;
         console.log("revealedCards " +revealedCards);
     if(clickCounter==2){
         clickCounter =0;
@@ -77,6 +94,15 @@ playGame = function(){
     console.log("playGame works!");
     let questionMark = '<i class="fas fa-question-circle"></i>'; //Question mark symbol
     
+    console.log(memoryDeck);
+
+    hiddenCards = shuffleHiddenCards(memoryDeck); //shuffle cards and store result in a new array hiddenCards
+    console.log(hiddenCards);
+    //Placing hidden cards in the browser
+    for(let i=1; i<= hiddenCards.length; i++){
+        document.getElementById("card"+i).innerHTML= hiddenCards[i];
+        console.log(document.getElementById("card"+i));
+    }
     
 
     //Game loop
