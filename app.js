@@ -3,6 +3,7 @@
 
  let hiddenCards = [];
  let revealedCards = [];
+ let revealedCardsId=[];
 
  let clickCounter =0;
 
@@ -73,9 +74,15 @@
 };*/
 
 let clickCard = function(id){
+    clickCounter++;
+    console.log(" clickcounter: " +clickCounter);
+    if(clickCounter<=2){
+        console.log(" clickcounter: " +clickCounter);
         
-        clickCounter++;
-       
+
+        //storing div card id
+        revealedCardsId.push(id);
+
         //Removing the card position from the div id
         let cardPos = parseInt(id.slice(4));
         console.log("cardPos: "+ cardPos);
@@ -85,23 +92,44 @@ let clickCard = function(id){
         revealedCards.push(hiddenCards[cardPos]);
         document.getElementById(id).innerHTML= hiddenCards[cardPos];
         console.log("revealedCards :" +revealedCards);
-    if(clickCounter==2){
-        clickCounter =0;
-        if(revealedCards[0] == revealedCards[1]){
-            console.log("match");
-            revealedCards.length =0;
-        }else{
-           
-            console.log("doesnt match");
-            revealedCards.length =0;
-        }
-    }
+        if(clickCounter==2){
+            console.log(" clickcounter: " +clickCounter);
+            if(revealedCards[0] == revealedCards[1]){
+                console.log("match");
+                document.getElementById(revealedCardsId[0]).className+="moveLeftAnim";
+                document.getElementById(revealedCardsId[1]).className+="moveLeftAnim";
+                setTimeout(function() {
+                    
+                    document.getElementById(revealedCardsId[0]).style.visibility= "hidden";
+                    document.getElementById(revealedCardsId[1]).style.visibility= "hidden";;
+                   
+                }, 1100);
+                
+                revealedCards.length =0;
 
-    setTimeout(function() {
-        document.getElementById(id).innerHTML= "<i  class='fas fa-question-circle' ></i>";
-    }, 2000);
+            }else{
+            
+                console.log("doesnt match");
+                revealedCards.length =0;
+            }
+           
+            setTimeout(function() {
+                console.log("timeout");
+                document.getElementById(revealedCardsId[0]).innerHTML= "<i  class='fas fa-question-circle' ></i>";
+                document.getElementById(revealedCardsId[1]).innerHTML= "<i  class='fas fa-question-circle' ></i>";
+                revealedCardsId.length = 0;
+                clickCounter =0;
+            }, 2000);
+        }
+        console.log(" clickcounter: " +clickCounter);
+    } 
+   
+
+    
 
 };
+
+
 
 playGame = function(){
 

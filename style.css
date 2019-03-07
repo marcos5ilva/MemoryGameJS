@@ -21,3 +21,26 @@
     text-align: center;
   }
 
+  .moveLeftAnim{
+    background-color: gray;
+    animation-name: moveCardLeftAnim ;
+    animation-duration: 2s;
+    animation-delay: 0s;
+   animation-timing-function: linear;
+   
+  }
+
+
+  @keyframes moveCardLeftAnim {
+
+    from {
+      transform: translateX(0);
+    }
+  
+    to {
+      transform: translateX(-800px);
+      
+     
+  }
+    }
+  
