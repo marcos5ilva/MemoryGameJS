@@ -22,30 +22,36 @@
  memoryDeck[12]= '<i class="fab fa-github"></i>'; //Github logo
  memoryDeck[13]= '<i class="fab fa-github"></i>'; //Github logo
  memoryDeck[14]= '<i class="fab fa-python"></i>'; //Python logo
- memoryDeck[15]= '<i class="fab fa-vuejs"></i>'; //Python logo
+ memoryDeck[15]= '<i class="fab fa-python"></i>'; //Python logo
  memoryDeck[16]= '<i class="fab fa-slack-hash"></i>'; //Slack logo
  memoryDeck[17]= '<i class="fab fa-slack-hash"></i>'; //Slack logo
  memoryDeck[18]= '<i class="fab fa-stack-overflow"></i>'; //Stack overflow logo
  memoryDeck[19]= '<i class="fab fa-stack-overflow"></i>'; //Stack overflow logo
 
  
- let shuffleHiddenCards = function(deck){
+ let shuffleDeck = function(deck){
      console.log("shuffleCars working");
-     console.log(deck);
+     console.log("deck :"+deck);
+     console.log("deckLenght :"+deck.length);
     let random = 0; 
-    let shuffleCards = [];
+   
+    let shuffledCards = [];
 
-    for (let i= deck.length; i>=0; i--){
+    for (let i= deck.length-1; i>=0; i--){
         random = Math.floor(Math.random() * (i));
-        console.log("i"+ i);
-        shuffleCards[i] = deck[random];
+        
+        console.log("i"+ i +" :"+ random);
+        shuffledCards[i] = deck[random];
         deck.splice(random, 1);
     }
     
-    return shuffleCards;
+    console.log("shuffledCards :"+shuffledCards);
+    
+    console.log("shuffledCardsLenght :"+shuffledCards.length);
+    return shuffledCards;
  };
 
- let drawCard = function(){
+/* let drawCard = function(){
      console.log("drawCard called");
     let random = Math.floor(Math.random() * (memoryDeck.length)); 
 
@@ -64,16 +70,21 @@
     
     return card;
     }
-};
+};*/
 
 let clickCard = function(id){
         
         clickCounter++;
-
-        let card = drawCard();
-        revealedCards.push(card);
-        document.getElementById(id).innerHTML= card;
-        console.log("revealedCards " +revealedCards);
+       
+        //Removing the card position from the div id
+        let cardPos = parseInt(id.slice(4));
+        console.log("cardPos: "+ cardPos);
+        console.log("Hidden card: "+ hiddenCards[cardPos]);
+        
+        //Revealing clicked card 
+        revealedCards.push(hiddenCards[cardPos]);
+        document.getElementById(id).innerHTML= hiddenCards[cardPos];
+        console.log("revealedCards :" +revealedCards);
     if(clickCounter==2){
         clickCounter =0;
         if(revealedCards[0] == revealedCards[1]){
@@ -86,6 +97,10 @@ let clickCard = function(id){
         }
     }
 
+    setTimeout(function() {
+        document.getElementById(id).innerHTML= "<i  class='fas fa-question-circle' ></i>";
+    }, 2000);
+
 };
 
 playGame = function(){
@@ -96,13 +111,13 @@ playGame = function(){
     
     console.log(memoryDeck);
 
-    hiddenCards = shuffleHiddenCards(memoryDeck); //shuffle cards and store result in a new array hiddenCards
-    console.log(hiddenCards);
-    //Placing hidden cards in the browser
-    for(let i=1; i<= hiddenCards.length; i++){
-        document.getElementById("card"+i).innerHTML= hiddenCards[i];
-        console.log(document.getElementById("card"+i));
-    }
+    //Hidden the play button
+    document.getElementById('playBtn').style.visibility = 'hidden';
+
+    //Shuffling and Placing hidden cards in the hiddenCards Array
+    hiddenCards = shuffleDeck(memoryDeck); 
+    console.log("hiddenCards : "+hiddenCards);
+  
     
 
     //Game loop
