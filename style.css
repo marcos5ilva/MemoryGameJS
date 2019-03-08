@@ -1,6 +1,14 @@
 
 .game-container{
-    text-align: center;
+    
+    background-color: #284c8a;
+   
+}
+
+.game-title{
+  font-family: 'Russo One', sans-serif;
+  color: whitesmoke;
+  font-size: 2em;
 }
 .deck .col-md-2 {
     text-align: center;
@@ -24,9 +32,12 @@
 
   li{
     border-radius: 15px;
-    background-color: black;
-    color: whitesmoke;
+    background-color:#181340;
+    color: #c38dd5;
     text-align: center;
+    -webkit-box-shadow: 2px 2px 5px 1px rgba(255,254,154,1);
+    -moz-box-shadow: 2px 2px 5px 1px rgba(255,254,154,1);
+    box-shadow: 2px 2px 5px 1px rgba(255,254,154,1);
   }
 
   .moveLeftAnim{
@@ -36,6 +47,13 @@
     animation-delay: 0s;
    animation-timing-function: linear;
    
+  }
+
+  .timerNumbers{
+    font-family: 'Russo One', sans-serif;
+    color: #FFFE9A;
+    font-size: 4em;
+    padding: 5px;
   }
 
 

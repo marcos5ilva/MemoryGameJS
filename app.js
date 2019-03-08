@@ -9,6 +9,9 @@
  let leftCardCounter =0;
  let play = false;
 
+ let seconds = document.getElementById("seconds");
+ let minutes = document.getElementById("minutes");
+
  //Card's symbols array
  let createMemoryDeck = function(){
     let Deck =[];
@@ -35,7 +38,21 @@
     Deck[19]= '<i class="fab fa-stack-overflow"></i>'; //Stack overflow logo
 
     return Deck;
- }
+ };
+
+
+ //Timer
+ var countUpTimer = function(){
+    let currentSeconds = parseFloat(seconds.textContent);
+    seconds.textContent = currentSeconds +1;
+    if(currentSeconds ===60){
+        let currentMinutes = parseFloat(minutes.textContent);
+        minutes.textContent = currentMinutes+1;
+        seconds.textContent = "0";
+    }
+ };
+
+ 
 
  //Shuffle deck function
  let shuffleDeck = function(deck){
@@ -60,8 +77,10 @@
     return shuffledCards;
  };
 
+ 
 
- //Click Card FunctionS
+
+ //Click Card Functions
 let clickCard = function(id){
     if(play){
         clickCounter++;
@@ -86,23 +105,24 @@ let clickCard = function(id){
                 console.log(" clickcounter: " +clickCounter);
                 if(revealedCards[0] == revealedCards[1]){
                     console.log("match");
-                    console.log("leftCardCounter :"+ leftCardCounter);
+                    
                     
                     document.getElementById(revealedCardsId[0]).style.backgroundColor= "gray";
-                        document.getElementById(revealedCardsId[1]).style.backgroundColor= "gray";
+                    document.getElementById(revealedCardsId[1]).style.backgroundColor= "gray";
                     document.getElementById(revealedCardsId[0]).className+="moveLeftAnim";
                     document.getElementById(revealedCardsId[1]).className+="moveLeftAnim";
                     setTimeout(function() {
-                        
-                        document.getElementById(revealedCardsId[0]).style.visibility= "hidden";
+                        console.log("leftCardCounter :"+ leftCardCounter);
+                    document.getElementById(revealedCardsId[0]).style.visibility= "hidden";
                         document.getElementById(revealedCardsId[1]).style.visibility= "hidden";
                         document.getElementById("leftCard"+leftCardCounter).innerHTML= hiddenCards[cardPos];
                         
-                    
+                        
                     }, 750);
                     
                     revealedCards.length =0;
                     leftCardCounter++;
+                    console.log("leftCardCounter added :"+ leftCardCounter);
                     
 
                 }else{
@@ -112,12 +132,12 @@ let clickCard = function(id){
                 }
             
                 setTimeout(function() {
-                    console.log("timeout");
+                    
                     document.getElementById(revealedCardsId[0]).innerHTML= "<i  class='fas fa-question-circle' ></i>";
                     document.getElementById(revealedCardsId[1]).innerHTML= "<i  class='fas fa-question-circle' ></i>";
                     revealedCardsId.length = 0;
                     clickCounter =0;
-                }, 800);
+                }, 750);
             }
             console.log(" clickcounter: " +clickCounter);
             if(leftCardCounter >=10){
@@ -141,6 +161,7 @@ playGame = function(){
     //Setting play variable to true
     play = true;
 
+    
     console.log("playGame works!");
     let questionMark = '<i class="fas fa-question-circle"></i>'; //Question mark symbol
     
@@ -159,16 +180,19 @@ playGame = function(){
     for(let i=0; i<hiddenCards.length; i++){
         document.getElementById("card"+i).innerHTML= "<i  class='fas fa-question-circle' ></i>";
         document.getElementById("card"+i).style.visibility= "visible";
-        document.getElementById("card"+i).style.backgroundColor= "black";
+        document.getElementById("card"+i).style.backgroundColor= "#181340";
 
     }
     console.log("hiddenCards : "+hiddenCards);  
 
     //Placing hidden left columns result cards in the browser
-    for(let i=0; i<10; i++){
+    for(let i=1; i<=10; i++){
         document.getElementById("leftCard"+i).innerHTML= "<i  class='fas fa-question-circle' ></i>"; 
                         
     }
 
+    //Starting timer
+    countUpTimer();
+    timer= window.setInterval(countUpTimer, 1000);
     
 };
