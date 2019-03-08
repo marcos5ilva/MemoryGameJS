@@ -9,9 +9,17 @@
   }
 
   .deck-fa{
-    font-size: 3.7em;
+    font-size: 3.5em;
+    
     list-style-type: none;
-    margin: 25px;
+    margin: 20px;
+  }
+
+  .deck-fa-left{
+    font-size: 3.5em;
+    width:350px ;
+    list-style-type: none;
+    margin: 20px;
   }
 
   li{
@@ -38,7 +46,7 @@
     }
   
     to {
-      transform: translateX(-800px);
+      transform: translateX(-1000px);
       
      
   }
