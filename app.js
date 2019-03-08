@@ -13,6 +13,7 @@
  let minutes = document.getElementById("minutes");
 
  //Card's symbols array
+ //Coded by Michael
  let createMemoryDeck = function(){
     let Deck =[];
 
@@ -42,6 +43,7 @@
 
 
  //Timer
+ //Coded by Marcos
  var countUpTimer = function(){
     let currentSeconds = parseFloat(seconds.textContent);
     seconds.textContent = currentSeconds +1;
@@ -55,6 +57,7 @@
  
 
  //Shuffle deck function
+ //Coded by Marcos
  let shuffleDeck = function(deck){
      console.log("shuffleCars working");
      console.log("deck :"+deck);
@@ -81,6 +84,7 @@
 
 
  //Click Card Functions
+ //Coded by Marcos
 let clickCard = function(id){
     if(play){
         clickCounter++;
@@ -130,7 +134,8 @@ let clickCard = function(id){
                     console.log("doesnt match");
                     revealedCards.length =0;
                 }
-            
+
+                 //Coded by Michael
                 setTimeout(function() {
                     
                     document.getElementById(revealedCardsId[0]).innerHTML= "<i  class='fas fa-question-circle' ></i>";
@@ -156,6 +161,7 @@ let clickCard = function(id){
 
 
 //Starting the game
+ //Coded by Michael
 playGame = function(){
 
     //Setting play variable to true
