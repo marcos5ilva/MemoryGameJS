@@ -8,6 +8,7 @@
  let clickCounter =0;
  let leftCardCounter =0;
  let play = false;
+ var timer;
 
  let seconds = document.getElementById("seconds");
  let minutes = document.getElementById("minutes");
@@ -53,6 +54,8 @@
         seconds.textContent = "0";
     }
  };
+
+ 
 
  
 
@@ -150,6 +153,9 @@ let clickCard = function(id){
                 document.getElementById('playBtn').style.visibility = 'visible';
                 //Set play variable to false
                 play = false;
+                window.clearInterval(timer);
+                
+              
                 leftCardCounter =0;
             }
         } 
@@ -166,7 +172,8 @@ playGame = function(){
 
     //Setting play variable to true
     play = true;
-
+    seconds.textContent = "0";
+    minutes.textContent ="0";
     
     console.log("playGame works!");
     let questionMark = '<i class="fas fa-question-circle"></i>'; //Question mark symbol
@@ -199,6 +206,6 @@ playGame = function(){
 
     //Starting timer
     countUpTimer();
-    timer= window.setInterval(countUpTimer, 1000);
+     timer= window.setInterval(countUpTimer, 1000);
     
 };
